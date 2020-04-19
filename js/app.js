@@ -2,27 +2,6 @@ import { Snake }  from './snake.js';
 import { Fruit }  from './fruit.js';
 import * as utils from './utils.js';
 
-console.log("Criando mundo.."
-    + "\nFPS = " + utils.FPS
-    + "\nCANVAS_WIDTH = " + utils.CANVAS_WIDTH
-    + "\nCANVAS_HEIGHT = " + utils.CANVAS_HEIGHT
-    + "\nBACKGROUND_COLOR = " + utils.BACKGROUND_COLOR
-    + "\nGRID_COLOR = " + utils.GRID_COLOR);
-
-    
-var player1 = new Snake("Player1", 5*utils.GRID_SIZE, 5*utils.GRID_SIZE, '#28bf80', utils.GRID_SIZE, 'right');
-player1.addNBody(20);
-console.log(player1);
-
-// canvas DOM
-var c = document.getElementById('app').getContext('2d', { alpha: false });
-// buffer canvas
-var buffer = document.createElement('canvas');
-buffer.width = utils.CANVAS_WIDTH;
-buffer.height = utils.CANVAS_HEIGHT;
-var b = buffer.getContext('2d', { alpha: false });
-setInterval(update, 1000 / utils.FPS);
-
 function drawGame() {
     // clear buffer
     b.fillStyle = utils.BACKGROUND_COLOR;
@@ -39,6 +18,7 @@ function drawGame() {
     }
 
     player1.draw(b);
+    fruit.draw(b);
 
     // draw in canvas
     c.drawImage(buffer, 0, 0);
@@ -46,5 +26,31 @@ function drawGame() {
 
 function update() {
     player1.update();
+    fruit.update();
     drawGame();
+    
 }
+
+console.log("Criando canvas.."
+    + "\nFPS = " + utils.FPS
+    + "\nCANVAS_WIDTH = " + utils.CANVAS_WIDTH
+    + "\nCANVAS_HEIGHT = " + utils.CANVAS_HEIGHT
+    + "\nBACKGROUND_COLOR = " + utils.BACKGROUND_COLOR
+    + "\nGRID_COLOR = " + utils.GRID_COLOR);
+
+// canvas DOM
+var c = document.getElementById('app').getContext('2d', { alpha: false });
+// buffer canvas
+var buffer = document.createElement('canvas');
+buffer.width = utils.CANVAS_WIDTH;
+buffer.height = utils.CANVAS_HEIGHT;
+var b = buffer.getContext('2d', { alpha: false });
+
+console.log("Criando player...");
+var player1 = utils.newSnake();
+player1.addNBody(20);
+console.log(player1);
+
+var fruit = utils.newFruit();
+
+setInterval(update, 1000 / utils.FPS);
