@@ -1,5 +1,6 @@
 import { Snake }  from './snake.js';
 import { Fruit }  from './fruit.js';
+import { Render }  from './render.js';
 import * as utils from './utils.js';
 
 console.log("Criando canvas.."
@@ -9,24 +10,31 @@ console.log("Criando canvas.."
     + "\nBACKGROUND_COLOR = " + utils.BACKGROUND_COLOR
     + "\nGRID_COLOR = " + utils.GRID_COLOR);
 
-// canvas DOM
+/*// canvas DOM
 var c = document.getElementById('app').getContext('2d', { alpha: false });
 // buffer canvas
 var buffer = document.createElement('canvas');
 buffer.width = utils.CANVAS_WIDTH;
 buffer.height = utils.CANVAS_HEIGHT;
 var b = buffer.getContext('2d', { alpha: false });
+*/
+
+
 
 console.log("Criando player...");
 var player1 = utils.newSnake();
 //player1.addNBody(20);
 console.log(player1);
-
 var fruit = utils.newFruit();
+var render = new Render('appcanvas');
+render.addObject(player1);
+render.addObject(fruit);
+console.log(render.objects);
 
 setInterval(update, 1000 / utils.FPS);
 
 
+/*
 function drawGame() {
     // clear buffer
     b.fillStyle = utils.BACKGROUND_COLOR;
@@ -48,6 +56,7 @@ function drawGame() {
     // draw in canvas
     c.drawImage(buffer, 0, 0);
 };
+*/
 
 function processCollisions() {
     let newPos;
@@ -65,10 +74,11 @@ function processCollisions() {
     }
 
     if ( utils.checkCollision(player1, fruit) ) {
+        player1.addBody();
         newPos = utils.randomPosition();
         fruit.x = newPos.x;
         fruit.y = newPos.y;
-        player1.addBody();
+        console.log(newPos);
     }
 }
 
@@ -76,6 +86,7 @@ function update() {
     player1.update();
     fruit.update();
     processCollisions();
-    drawGame();
+    //drawGame();
+    render.update();
 }
 

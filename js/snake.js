@@ -9,6 +9,7 @@ import * as utils from './utils.js';
         this._color = color;
         this._size = size;
         this._dir = ''
+        this._type = "snake";
     }
 
     // https://stackoverflow.com/questions/41427296/es6-set-function-isnt-recognized
@@ -22,6 +23,7 @@ import * as utils from './utils.js';
     set size(size) {this._size = size}
     get dir() {return this._dir}
     set dir(dir) {this._dir = dir}
+    get type() {return this._type}
 }
 
 export class Snake {

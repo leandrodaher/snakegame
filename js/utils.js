@@ -15,6 +15,7 @@ export function newSnake() {
   return snake;
 }
 
+/*
 function getTileIndex(xx, yy) {
   let tileX = Math.floor(xx / GRID_SIZE);
   let tileY = Math.floor(yy / GRID_SIZE);
@@ -32,7 +33,21 @@ export function randomPosition() {
   let random_y = Math.floor(Math.random() * CANVAS_HEIGHT)
   
   let index = getTileIndex(random_x, random_y)
-  return tileIndexToPixel(index.tileX, index.tileY);
+  let pos = tileIndexToPixel(index.tileX, index.tileY);
+  return pos;
+}
+*/
+
+export function randomPosition() {
+  let random_x = Math.floor(Math.random() * CANVAS_WIDTH)
+  let random_y = Math.floor(Math.random() * CANVAS_HEIGHT)
+  
+  let pos = {
+    x: Math.floor(random_x / GRID_SIZE) * GRID_SIZE,
+    y: Math.floor(random_y / GRID_SIZE) * GRID_SIZE
+  }
+  
+  return pos;
 }
 
 // criar fruta padrão
