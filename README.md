@@ -1,2 +1,2 @@
 # Importante
-Observe que os cálculos estão utilizando muitas variáveis pois eu quiz manter a didática. É necessári otimizar caso queira usar algo em produção.
+Observe que os cálculos estão utilizando muitas variáveis pois eu quiz manter a didática. É necessário otimizar caso queira usar algo em produção.
